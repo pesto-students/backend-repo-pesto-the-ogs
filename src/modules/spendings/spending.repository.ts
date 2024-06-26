@@ -18,7 +18,8 @@ export class SpendingRepository extends Repository<UserExpenseAndEarning>{
         income.incomeSource = income_source;
         income.userId = userId;
         income.incomeType = income_type;
-        income.date = date || new Date()
+        income.date = date || new Date();
+        income.createdBy = userId
 
         try {
             const res = await income.save();
@@ -30,14 +31,15 @@ export class SpendingRepository extends Repository<UserExpenseAndEarning>{
 
 
     async addExpense(amount: number, description: string, date: Date, userId: string): Promise<UserExpenseAndEarning> {
-        
+
         const expense = new UserExpenseAndEarning();
 
         expense.amount = amount;
         expense.description = description;
         expense.spendType = SpendingEnum.EXPENSE;
         expense.userId = userId;
-        expense.date = date || new Date()
+        expense.date = date || new Date();
+        expense.createdBy = userId
 
         try {
             const res = await expense.save();
