@@ -8,6 +8,7 @@ import { typeOrmConfig } from './config/typeorm.config';
 import { ConfigModule } from '@nestjs/config';
 import { configuration } from 'config/configuration';
 import { validationSchema } from "config/validation";
+import { SpendingsModule } from './modules/spendings/spendings.module';
 
 
 // const mailConfig = config.get('email');
@@ -22,7 +23,8 @@ import { validationSchema } from "config/validation";
     }),
     TypeOrmModule.forRootAsync(typeOrmConfig),
     AuthModule,
-    UserModule
+    UserModule,
+    SpendingsModule
     // MailerModule.forRoot({
     //   transport: {
     //     host: mailConfig.host,

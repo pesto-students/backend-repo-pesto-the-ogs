@@ -16,6 +16,7 @@ import { CompleteSetupDto } from './dto/complete_user_setup.dto';
 import { JwtPayload } from '../auth/jwt-payload.interface';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { throwException } from 'src/shared/utility/throw-exception';
 
 @Injectable()
 export class UserService {
@@ -84,8 +85,8 @@ export class UserService {
             userData.token = token;
             userData.message = "Your account has been created successfully.";
             return userData;
-        } catch (err) {
-            throw new BadRequestException(err);
+        } catch (error) {
+            throwException(error);
         }
     }
 

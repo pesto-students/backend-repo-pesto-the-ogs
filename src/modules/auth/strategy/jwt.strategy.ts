@@ -20,11 +20,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             ignoreExpiration: true,
             jwtFromRequest: ExtractJwt.fromExtractors([
                 (request: Request) => {
-                    const auth = request?.signedCookies["auth"];
+                    // const auth = request?.signedCookies["auth"];
+                    const auth = request?.headers["authorization"]?.split(" ")[1];
+                    console.log("====auth=====",auth)
                     if (!auth) {
                         return null;
                     }
-                    return auth.accessToken;
+                    return auth;
                 }
             ]),
             secretOrKey: configService.get("jwt.secret")
@@ -39,7 +41,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         }
 
         const { id } = payload;
-        const user = await this.userRepository.findOne({ where: { id: id, isActive: true } });
+        const user = await User.findOne({ where: { id: id, isActive: true } });
         if (!user) throw new UnauthorizedException();
 
         // const token = req.headers["authorization"]?.split(" ")[1];
