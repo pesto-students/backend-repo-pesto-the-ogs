@@ -3,8 +3,8 @@ import { User } from "./user.entity";
 import { GoalCategories } from "./goal-categories.entity";
 
 
-@Entity('user-expenses-and-earnings')
-export class UserExpenseAndEarning extends BaseEntity {
+@Entity('user-goals')
+export class UserGoals extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;

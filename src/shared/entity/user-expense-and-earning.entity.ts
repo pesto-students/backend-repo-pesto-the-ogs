@@ -13,7 +13,10 @@ export class UserExpenseAndEarning extends BaseEntity {
     userId: string;
 
     @Column("enum", { name: "spend_type", enum: SpendingEnum })
-    spendType: SpendingEnum;
+    spendType: string;
+
+    @Column("character varying", { name: "name", nullable: true })
+    name: string;
 
     @Column("character varying", { name: "description" })
     description: string;
@@ -32,6 +35,12 @@ export class UserExpenseAndEarning extends BaseEntity {
         name: 'date'
     })
     date: Date;
+
+    @Column({ name: "is_recurring", default: false })
+    isRecurring: boolean
+
+    @Column({ name: "is_active", default: true })
+    isActive: boolean
 
     @CreateDateColumn({
         type: 'timestamp with time zone',

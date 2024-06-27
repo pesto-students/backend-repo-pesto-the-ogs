@@ -1,9 +1,7 @@
 import { IsNotEmpty, IsEmail, ValidationArguments, MaxLength, MinLength, Matches, IsOptional, IsEnum } from 'class-validator'
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsEqualTo } from 'src/shared/decorators/password.decorator';
-import { SpendingEnum } from 'src/shared/enums/spending.enum';
 
-export class ExpenseOrEarningDto {
+export class UpdateSpendingDto {
 
     @IsNotEmpty({
         message: `Please select your type.&&&type`
@@ -72,10 +70,10 @@ export class ExpenseOrEarningDto {
 
 
     @ApiPropertyOptional({
-        description: `Enter date`,
+        description: `Enter expense date`,
         example: '2024-06-20T11:43:12Z'
     })
-    date: Date;
+    expense_date: Date;
 
 
 }

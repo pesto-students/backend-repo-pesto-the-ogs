@@ -6,7 +6,6 @@ import { JwtPayload } from "../jwt-payload.interface";
 import { User } from "src/shared/entity/user.entity";
 import { UserRepository } from "../../user/user.repository";
 import { ConfigService } from "@nestjs/config";
-import { DataSource } from "typeorm";
 import { Request } from "express";
 
 export class JwtStrategy extends PassportStrategy(Strategy) {

@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsEnum, IsNotEmpty, IsNumber, IsNumberString, IsString, Matches, ValidationArguments } from "class-validator";
+import { IsEnum, IsNotEmpty, IsNumber, IsNumberString, IsString, Matches, ValidationArguments, IsOptional } from "class-validator";
 import { OrderDir } from "../enums/order_dir.enum";
 
 export class PageQueryDto {
@@ -59,23 +59,38 @@ export class PageQueryDto {
     })
     orderDir: OrderDir;
         
-    @ApiProperty({
-        required: false,
-        description: "Enter status"
-    })
-    status: boolean
 
-    @ApiProperty({
+    @IsOptional()
+    @ApiPropertyOptional({
         required: false,
-        description: "Enter plan type"
+        description: "Enter income source",
+        example:"primary"
     })
-    plan_id: number
+    income_source_filter: string
 
-    @ApiProperty({
+    @IsOptional()
+    @ApiPropertyOptional({
         required: false,
-        description: "Enter with Loba or without Loba"
+        description: "Enter income type",
+        example:"fixed"
     })
-    is_loba: number
+    income_type_filter: string
+
+    @IsOptional()
+    @ApiPropertyOptional({
+        required: false,
+        description: "Enter spend/finance type",
+        example:"INCOME"
+    })
+    type_filter: string
+
+    @IsOptional()
+    @ApiPropertyOptional({
+        required: false,
+        description: "Enter recurring type",
+        example:"0"
+    })
+    is_recurring_filter: number | string
 
     @ApiPropertyOptional({
         required: false,
